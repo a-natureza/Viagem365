@@ -1,0 +1,87 @@
+const { Sequelize, DataTypes } = require('sequelize');
+const dbConfig = require('./config/database'); 
+const Usuario = require('./Usuario');
+
+// Crie uma nova instância do Sequelize usando as configurações de `database.config.js`
+const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
+host: dbConfig.host,
+dialect: dbConfig.dialect,
+port: dbConfig.port,
+dialectOptions: dbConfig.dialectOptions,
+logging: false // Desativa logs SQL ou ajuste conforme necessidade
+});
+
+const UsuariosEndereco = sequelize.define('UsuariosEndereco', {
+logradouro: {
+    type: DataTypes.STRING,
+    allowNull: false // Requer que o logradouro seja sempre fornecido
+    },
+    numero: {
+    type: DataTypes.STRING,
+    allowNull: true // Permite que o número seja nulo
+    },
+    complemento: {
+    type: DataTypes.STRING,
+    allowNull: true // Permite que o complemento seja nulo
+    },
+    bairro: {
+    type: DataTypes.STRING,
+    allowNull: false // Requer que o bairro seja sempre fornecido
+    },
+    cidade: {
+    type: DataTypes.STRING,
+    allowNull: false // Requer que a cidade seja sempre fornecida
+    },
+    estado: {
+    type: DataTypes.STRING,
+    allowNull: false // Requer que o estado seja sempre fornecido
+    },
+    cep: {
+    type: DataTypes.INTEGER,
+    allowNull: false // Requer que o CEP seja sempre fornecido
+    },
+    pais: {
+    type: DataTypes.STRING,
+    allowNull: true // Permite que o país seja nulo
+    },
+    latitude: {
+    type: DataTypes.STRING,
+    allowNull: true // Permite que a latitude seja nula
+    },
+    longitude: {
+    type: DataTypes.STRING,
+    allowNull: true // Permite que a longitude seja nula
+    },
+    usuarioId: {
+    type: DataTypes.INTEGER,
+    allowNull: false, // Requer que o usuário ID esteja sempre vinculado
+    references: {
+        model: Usuario,
+        key: 'id'
+    }
+    },
+}, {
+    timestamps: true, // Habilita os campos `createdAt` e `updatedAt` por padrão
+});
+
+UsuariosEndereco.belongsTo(Usuario, {
+    foreignKey: 'usuarioId',
+    as: 'usuario',
+    onDelete: 'CASCADE'
+  })
+  Usuario.hasMany(UsuariosEndereco, {
+    foreignKey: 'usuarioId',
+    as: 'enderecos',
+    onDelete: 'CASCADE'
+  })
+
+// UsuariosEndereco.belongsTo(Usuario, {
+// foreignKey: 'usuarioId',
+// onDelete: 'CASCADE'
+// })
+// Usuario.hasMany(UsuariosEndereco, {
+// foreignKey: 'usuarioId',
+// onDelete: 'CASCADE'
+// })
+
+module.exports = UsuariosEndereco;
