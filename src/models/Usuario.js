@@ -1,17 +1,18 @@
 const { connection } = require("../database/connection");
 const { DataTypes } = require("sequelize");
+const { hash } = require('bcryptjs');
 
 const Usuario = connection.define('usuarios', {
 nome: {
     type: DataTypes.STRING,
     allowNull: false
     },
-dataNascimento: {
+data_nascimento: {
     type: DataTypes.DATEONLY,
     allowNull: false
 },    
 sexo: {
-    type: DataTypess.STRING,
+    type: DataTypes.STRING,
     allowNull: false
 },
 cpf: {
@@ -49,13 +50,9 @@ password: {
 Usuario.beforeSave(async (usuario) => {
     if (usuario.changed('password')) {
         usuario.password = await hash(usuario.password, 8)
-        return user
+        return usuario
     }
    
 })
-// Usuario.hasMany(UsuarioEndereco, {
-//     foreignKey: 'usuarioId',
-//     as: 'enderecos'
-//   })
 
 module.exports = Usuario

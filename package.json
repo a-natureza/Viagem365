@@ -12,11 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "connection-string": "^4.4.0",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
+    "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.5",
     "pg-hstore": "^2.3.4",
