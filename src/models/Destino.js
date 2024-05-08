@@ -1,7 +1,9 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
+const { connection } = require("../database/connection");
 const Usuario = require("./Usuario");
+require('dotenv').config();
 
-const Destino = Sequelize.define('Destino', {
+const Destino = connection.define('destino', {
     usuario_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -45,10 +47,16 @@ const Destino = Sequelize.define('Destino', {
 })
 
 // RELACIONAMENTO COM O MODELO USUARIO
-Destino.belongsTo(Usuario, { foreignKey: 'usuarioId' })
+Destino.belongsTo(Usuario, { foreignKey: 'usuario_id' })
 Usuario.hasMany(Destino, {
-    foreignKey: 'usuarioId',
+    foreignKey: 'usuario_id',
     onDelete: 'RESTRICT' // Impede a deleção de um usuário que tenha destinos associados
 })
+
+// Destino.associate = models => {
+//     Destino.belongsTo(models.Usuario, { foreignKey: 'usuario_id' });
+//   };
+
+//   return Destino
 
 module.exports = Destino
