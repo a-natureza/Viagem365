@@ -4,18 +4,21 @@ const loginRoutes = require('./login.route');
 const destinoRoutes = require('./destinos.route');
 
 const routes = new Router()
+const swaggerUI = require('swagger-ui-express')
+const swaggerDocument = require('./doc.swagger.json')
 
-// Rota de teste
-routes.get('/', (req, res) => res.send('Hello World!'))
+
+// Rota do swagger
+routes.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
 // Rotas de usuários
-routes.use('/usuarios', usuarioRoutes)
+routes.use('/usuario', usuarioRoutes)
 
 // Rota de login
 routes.use('/login', loginRoutes)
 
 // Rotas de destino
-routes.use('/destinos', destinoRoutes)
+routes.use('/local', destinoRoutes)
 
 // Exportando as rotas
 

@@ -10,6 +10,42 @@ const loginSchema = yup.object().shape({
 
 class LoginController {
     async login(req, res) {
+            /*  
+    #swagger.tags = ['Autenticação']
+    #swagger.description = 'Endpoint para autenticar um usuário e retornar um token JWT.'
+    #swagger.parameters['body'] = {
+        in: 'body',
+        required: true,
+        description: 'Dados de acesso do usuário',
+        schema: {
+            $email: 'email@dominio.com',
+            $password: 'senha123'
+        }
+    }
+    #swagger.responses[200] = {
+        description: 'Autenticação bem-sucedida. Token JWT retornado.',
+        schema: {
+            Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+        }
+    }
+    #swagger.responses[400] = {
+        description: 'Dados inválidos fornecidos pelo usuário. Pode ser email ou senha faltando.',
+        schema: [
+            { message: 'O email é obrigatório' },
+            { message: 'A senha é obrigatória' },
+            { message: 'Nenhum usuário corresponde ao email fornecido!' }
+        ]
+    }
+    #swagger.responses[403] = {
+        description: 'Credenciais inválidas - senha incorreta.',
+        schema: { mensagem: 'Usuário não encontrado' }
+    }
+    #swagger.responses[500] = {
+        description: 'Erro interno do servidor.',
+        schema: { error: 'Detalhes do erro', message: 'Algo deu errado!' }
+    }
+*/
+
         try {
             // validação de entrada
             await loginSchema.validate(req.body, { abortEarly: false })
@@ -36,7 +72,7 @@ class LoginController {
                 return res.status(403).json({mensagem: 'Usuário não encontrado'})
             }
             const payload = { sub: usuario.id, email: usuario.email, nome: usuario.nome }
-            const token = sign(payload, process.env.SECRET_JWT, { expiresIn: '1d' })
+            const token = sign(payload, process.env.SECRET_JWT)
 
             return res.json({ Token: token })
         } catch (error) {

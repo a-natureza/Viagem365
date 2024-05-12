@@ -4,14 +4,6 @@ const cors = require('cors')
 const { connection } = require('./database/connection') 
 const routes = require('./routes/routes')
 
-console.log('SECRET_JWT:', process.env.SECRET_JWT)
-// const loginRoutes = require('./routes/login.route')
-
-// const app = express()
-
-// app.use(express.json())
-// app.use('/login', loginRoutes)
-
 const PORT_API = process.env.PORT_API || 3000
 
 class Server {
@@ -28,9 +20,6 @@ class Server {
       app.use(cors()) 
       app.use(express.json())
     }
-    // async routes(app) {
-    //   app.use(routes)
-    // }
   
     async database() {
       try {

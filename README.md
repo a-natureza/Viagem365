@@ -19,6 +19,7 @@ Este projeto utiliza as seguintes tecnologias:
 - **JWT (JSON Web Tokens)**: Utilizado para a autenticação de usuários.
 - **Bcrypt.js**: Biblioteca para hashing de senhas.
 - **dotenv**: Módulo para carregar variáveis de ambiente.
+- **Trello**: Ferramenta Kanban para organização das tarefas antes de começar a desenvolver. `https://trello.com/b/5FN70UKV/viagem365`
 
 ### Como Executar
 
@@ -58,7 +59,7 @@ Este projeto utiliza as seguintes tecnologias:
 
 ## Documentação do Sequelize:
 
-https://sequelize.org/docs/v6/core-concepts/model-basics/
+`https://sequelize.org/docs/v6/core-concepts/model-basics/`
 
 ## Criando o primeiro Seed
 
@@ -73,6 +74,35 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 1. Reverter o último seed: `npx sequelize-cli db:seed:undo`
 2. Reverter um seed específico: `npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data`
 3. Reverter todos os seeds: `npx sequelize-cli db:seed:undo:all`
+
+## Swagger
+
+### Instalar o Swagger UI
+
+`npm install swagger-ui-express`
+
+### Instalar o Swagger AutoGen para gerar o documento Swagger de forma automatica
+
+`npm install swagger-autogen`
+
+**Passo 1: Instalação dos Pacotes**
+`npm install swagger-autogen swagger-ui-express`
+
+**Passo 2: Configuração do Swagger Autogen**
+`autoGen.swagger.js`
+
+**Passo 3: Configurar as Rotas para Usar Swagger**
+`./src/routes/routes.js`
+
+**Passo 4: Documentação Específica das Rotas**
+`/** #swagger */`
+
+**Passo 5: Executar o Swagger Autogen**
+`node swagger`
+
+Isso irá gerar a documentação baseada nas anotações feitas em suas rotas e torná-la acessível em `localhost:3000/docs`
+
+Após executar o swagger executar o servidor: `npm run start:dev`
 
 ## Novas Bibliotecas utilizadas:
 
@@ -95,6 +125,10 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 ### instalar o JsonWebToken ( JWT )
 
 `npm install jsonwebtoken`
+
+### instalar o Bcrypt.js para criptografia da senha
+
+`npm install bcrypt.js`
 
 ## instalar o axios
 
@@ -156,3 +190,12 @@ develop
 - git checkout develop
 - git merge feature/src
 - git push origin develop
+
+**Branchs Utilizadas**
+
+- develop
+- feature/src
+- feature/modelagem-dados
+- rotas
+- rota_destino
+- auth
