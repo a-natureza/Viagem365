@@ -1,0 +1,708 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Minha API",
+    "description": "API para gerenciamento de usuários e destinos",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "authorization",
+      "description": "Token de Autenticação"
+    }
+  },
+  "paths": {
+    "/usuario/": {
+      "post": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Adiciona um novo usuário",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Seu Nome Aqui"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "example": "YYYY-MM-DD"
+                },
+                "sexo": {
+                  "type": "string",
+                  "example": "Feminino"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "01234567890"
+                },
+                "cep": {
+                  "type": "string",
+                  "example": "88888-888"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Seu Endereço Aqui"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "seu.email@aqui.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "SuaSenhaSegura123"
+                }
+              },
+              "required": [
+                "nome",
+                "data_nascimento",
+                "sexo",
+                "cpf",
+                "cep",
+                "endereco",
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Seu Nome Aqui"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "example": "YYYY-MM-DD"
+                },
+                "sexo": {
+                  "type": "string",
+                  "example": "Feminino"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "01234567890"
+                },
+                "cep": {
+                  "type": "string",
+                  "example": "88888-888"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Seu Endereço Aqui"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "seu.email@aqui.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "SuaSenhaSegura123"
+                }
+              },
+              "required": [
+                "id",
+                "nome",
+                "data_nascimento",
+                "sexo",
+                "cpf",
+                "cep",
+                "endereco",
+                "email",
+                "password"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação ou dados incompletos.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Todos os campos são obrigatórios"
+                }
+              },
+              "required": [
+                "message"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Não foi possível cadastrar o usuário"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Endpoint para listar todos os usuários cadastrados",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Não foi possível listar os usuários"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/{id}": {
+      "delete": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Endpoint para deletar um usuário pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do usuário a ser deletado"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário deletado com sucesso.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Usuário deletado com sucesso!"
+                }
+              },
+              "required": [
+                "message"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Usuário não encontrado!"
+                }
+              },
+              "required": [
+                "message"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao deletar usuário.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Não foi possível deletar o usuário"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login/": {
+      "post": {
+        "tags": [
+          "Autenticação"
+        ],
+        "description": "Endpoint para autenticar um usuário e retornar um token JWT.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Dados de acesso do usuário",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "email@dominio.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "senha123"
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Autenticação bem-sucedida. Token JWT retornado.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Token": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos fornecidos pelo usuário. Pode ser email ou senha faltando.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "example": "Nenhum usuário corresponde ao email fornecido!"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "403": {
+            "description": "Credenciais inválidas - senha incorreta.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensagem": {
+                  "type": "string",
+                  "example": "Usuário não encontrado"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Detalhes do erro"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Algo deu errado!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/local/": {
+      "post": {
+        "tags": [
+          "Destino"
+        ],
+        "description": "Endpoint para cadastrar um novo destino. Requer dados como nome do local, descrição, CEP e localidade. As coordenadas latitude e longitude são calculadas automaticamente com base no CEP fornecido.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados do destino a ser cadastrado.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "usuario_id": {
+                  "type": "string",
+                  "example": "ID do usuário que está cadastrando o destino"
+                },
+                "nome_local": {
+                  "type": "string",
+                  "example": "Nome do local do destino"
+                },
+                "descricao": {
+                  "type": "string",
+                  "example": "Descrição detalhada do destino"
+                },
+                "localidade": {
+                  "type": "string",
+                  "example": "Localidade do destino"
+                },
+                "cep": {
+                  "type": "string",
+                  "example": "CEP do local do destino"
+                },
+                "latitude": {
+                  "type": "string",
+                  "example": "Latitude geográfica obtida através do CEP. Este campo é calculado automaticamente"
+                },
+                "longitude": {
+                  "type": "string",
+                  "example": "Longitude geográfica obtida através do CEP. Este campo é calculado automaticamente"
+                }
+              },
+              "required": [
+                "usuario_id",
+                "nome_local",
+                "descricao",
+                "localidade",
+                "cep"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "CEP não encontrado.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "CEP não encontrado"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao processar a solicitação.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Erro ao processar a solicitação"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Destino"
+        ],
+        "description": "Endpoint para listar todos os destinos associados ao usuário autenticado.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem de destinos realizada com sucesso.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Destino"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Erro interno ao tentar listar os destinos."
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/local/{id}": {
+      "get": {
+        "tags": [
+          "Destino"
+        ],
+        "description": "Endpoint para recuperar um destino específico, se o usuário autenticado for o dono.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do destino a ser recuperado"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "schema",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Destino recuperado com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Destino"
+            }
+          },
+          "401": {
+            "description": "Usuário não autorizado para acessar esse recurso."
+          },
+          "500": {
+            "description": "Erro interno ao tentar recuperar o destino."
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Destino"
+        ],
+        "description": "Endpoint para atualizar os dados de um destino existente, se o usuário autenticado for o dono.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do destino a ser atualizado"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados para atualização do destino",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "usuario_id": {
+                  "type": "string",
+                  "example": "ID do usuário que cadastrou o destino"
+                },
+                "nome_local": {
+                  "type": "string",
+                  "example": "Nome do local do destino"
+                },
+                "descricao": {
+                  "type": "string",
+                  "example": "Descrição detalhada do destino"
+                },
+                "localidade": {
+                  "type": "string",
+                  "example": "Localidade do destino"
+                },
+                "cep": {
+                  "type": "string",
+                  "example": "CEP do local do destino"
+                }
+              },
+              "required": [
+                "usuario_id",
+                "nome_local",
+                "descricao",
+                "localidade",
+                "cep"
+              ]
+            }
+          },
+          {
+            "name": "in",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "required",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "schema",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Destino atualizado com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Destino"
+            }
+          },
+          "401": {
+            "description": "Usuário não autorizado para acessar esse recurso."
+          },
+          "404": {
+            "description": "Destino não encontrado."
+          },
+          "500": {
+            "description": "Erro interno ao tentar atualizar o destino."
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Destino"
+        ],
+        "description": "Endpoint para deletar um destino, se o usuário autenticado for o dono.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do destino a ser deletado"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Destino deletado com sucesso."
+          },
+          "401": {
+            "description": "Usuário não autorizado para deletar esse recurso."
+          },
+          "404": {
+            "description": "Destino não encontrado."
+          },
+          "500": {
+            "description": "Erro interno ao tentar deletar o destino."
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    }
+  }
+}
