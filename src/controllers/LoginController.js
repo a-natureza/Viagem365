@@ -69,10 +69,10 @@ class LoginController {
            const hashSenha = await compare(password, usuario.password)
 
             if(!hashSenha) {
-                return res.status(403).json({mensagem: 'Usuário não encontrado'})
+                return res.status(403).json({mensagem: 'Senha Incorreta'})
             }
             const payload = { sub: usuario.id, email: usuario.email, nome: usuario.nome }
-            const token = sign(payload, process.env.SECRET_JWT)
+            const token = sign(payload, process.env.SECRET_JWT, { expiresIn: '1d'})
 
             return res.json({ Token: token })
         } catch (error) {

@@ -22,4 +22,8 @@ const doc = {
 const outputFile = './src/routes/doc.swagger.json';
 const routes = ['./src/server.js'];
 
-swaggerAutogen(outputFile, routes, doc);
+swaggerAutogen(outputFile, routes, doc).then(() => {
+    console.log('Documentação Swagger gerada com sucesso!');
+  }).catch(error => {
+    console.error('Falha ao gerar documentação Swagger:', error);
+  });;

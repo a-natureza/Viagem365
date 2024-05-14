@@ -31,6 +31,19 @@ class DestinoController {
             longitude: 'Longitude geográfica obtida através do CEP. Este campo é calculado automaticamente'
         }
     }
+    #swagger.responses[201] = {
+    description: 'Destino cadastrado com sucesso.',
+    schema: {
+        id: 'ID do destino',
+        usuario_id: 'ID do usuário que cadastrou o destino',
+        nome_local: 'Nome do local do destino',
+        descricao: 'Descrição detalhada do destino',
+        localidade: 'Localidade do destino',
+        cep: 'CEP do local do destino',
+        latitude: 'Latitude geográfica obtida através do CEP.',
+        longitude: 'Longitude geográfica obtida através do CEP.'
+        }
+    }
     #swagger.responses[404] = {
         description: 'CEP não encontrado.',
         schema: { error: 'CEP não encontrado' }
@@ -83,18 +96,18 @@ class DestinoController {
 
     async listar(req, res) {
 /*  #swagger.tags = ['Destino']
-    #swagger.description = 'Endpoint para listar todos os destinos associados ao usuário autenticado.'
-    #swagger.security = [{
-        "apiKeyAuth": []
-    }]
-    #swagger.responses[200] = { 
-        description: 'Listagem de destinos realizada com sucesso.',
-        schema: [{ $ref: '#/definitions/Destino' }]
-    }
-    #swagger.responses[500] = { 
-        description: 'Erro interno ao tentar listar os destinos.'
-    }
-*/
+        #swagger.description = 'Endpoint para listar todos os destinos associados ao usuário autenticado.'
+        #swagger.security = [{
+            "apiKeyAuth": []
+        }]
+        #swagger.responses[200] = { 
+            description: 'Listagem de destinos realizada com sucesso.',
+            schema: { type: 'array', items: { $ref: '#/definitions/Destino' } }
+        }
+        #swagger.responses[500] = { 
+            description: 'Erro interno ao tentar listar os destinos.'
+        }
+    */
 
         try {
             // token
@@ -115,26 +128,26 @@ class DestinoController {
 
     async listarUm(req, res) {
 /*  #swagger.tags = ['Destino']
-    #swagger.description = 'Endpoint para recuperar um destino específico, se o usuário autenticado for o dono.'
-    #swagger.security = [{
-        "apiKeyAuth": []
-    }]
-    #swagger.parameters['id'] = {
-        in: 'path',
-        description: 'ID do destino a ser recuperado',
-        required: true,
-        type: 'integer'
-    }
-    #swagger.responses[200] = { 
-        description: 'Destino recuperado com sucesso.',
-        schema: { $ref: '#/definitions/Destino' }
-    }
-    #swagger.responses[401] = { 
-        description: 'Usuário não autorizado para acessar esse recurso.'
-    }
-    #swagger.responses[500] = { 
-        description: 'Erro interno ao tentar recuperar o destino.'
-    }
+        #swagger.description = 'Endpoint para recuperar um destino específico, se o usuário autenticado for o dono.'
+        #swagger.security = [{
+            "apiKeyAuth": []
+        }]
+        #swagger.parameters['id'] = {
+            in: 'path',
+            description: 'ID do destino a ser recuperado',
+            required: true,
+            type: 'integer'
+        }
+        #swagger.responses[200] = { 
+            description: 'Destino recuperado com sucesso.',
+            schema: { $ref: '#/definitions/Destino' }
+        }
+        #swagger.responses[401] = { 
+            description: 'Usuário não autorizado para acessar esse recurso.'
+        }
+        #swagger.responses[500] = { 
+            description: 'Erro interno ao tentar recuperar o destino.'
+        }
 */
         try {
             // token
@@ -145,7 +158,7 @@ class DestinoController {
             if (token.sub == destinos.usuario_id) {
                 return res.status(200).json(destinos)
             }
-            return res.status(401).json({ message: 'Você não tem permissão para acessar esse recurso' })
+            return res.status(401).json({ message: 'Acesso negado' })
         } catch (error) {
             console.error(error.message);
             res.status(500).json({ error: 'Não foi possível listar os destinos' });
@@ -199,7 +212,7 @@ class DestinoController {
                 return res.status(404).json({ message: 'Destino não encontrado!' })
             }
             if (token.sub !== destino.usuario_id) {
-                return res.status(401).json({ message: 'Você não tem permissão para acessar esse recurso' })
+                return res.status(401).json({ message: 'Acesso negado' })
             }
             const { nome_local, descricao, cep, localidade, latitude, longitude } = req.body
             
@@ -253,7 +266,7 @@ class DestinoController {
                 return res.status(404).json({ message: 'Destino não encontrado!' })
             }
             if (token.sub !== destino.usuario_id) {
-                return res.status(401).json({ message: 'Você não tem permissão para deletar esse destino' })
+                return res.status(401).json({ message: 'Acesso negado' })
             }
             await Destino.destroy({
                 where: {

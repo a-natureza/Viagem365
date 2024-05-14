@@ -4,6 +4,9 @@
 
 **Viagem365** é uma plataforma projetada para promover turismo sustentável, permitindo que os usuários explorem, descubram, e compartilhem experiências sobre destinos turísticos, praias, atrações naturais e atividades recreativas. A plataforma serve como um recurso valioso para aqueles que buscam aventuras sustentáveis e experiências autênticas ao redor do mundo.
 
+![Node.js](https://img.shields.io/badge/node-%3E%3D12.18.3-brightgreen)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-%3E%3D12-brightgreen)
+
 ### Problema que Resolve
 
 O Viagem365 endereça a necessidade crescente de turismo responsável, fornecendo informações detalhadas sobre práticas sustentáveis e destinos que suportam a preservação ambiental. Ajudando os usuários a fazer escolhas conscientes, contribui para a redução do impacto ambiental associado ao turismo.
@@ -12,14 +15,14 @@ O Viagem365 endereça a necessidade crescente de turismo responsável, fornecend
 
 Este projeto utiliza as seguintes tecnologias:
 
-- **Node.js**: Plataforma de desenvolvimento para o backend.
-- **Express**: Framework para aplicação web para Node.js.
-- **PostgreSQL**: Sistema de banco de dados relacional.
-- **Sequelize**: ORM de Node.js para Postgres, MySQL, MariaDB, SQLite e Microsoft SQL Server.
+- **Node.js**: Plataforma de desenvolvimento para o backend. [Documentação](https://nodejs.org/)
+- **Express**: Framework para aplicação web para Node.js. [Documentação](https://expressjs.com/)
+- **PostgreSQL**: Sistema de banco de dados relacional. [Documentação](https://www.postgresql.org/docs/)
+- **Sequelize**: ORM de Node.js para Postgres, MySQL, MariaDB, SQLite e Microsoft SQL Server. [Documentação](https://sequelize.org/docs/v6/core-concepts/model-basics/)
 - **JWT (JSON Web Tokens)**: Utilizado para a autenticação de usuários.
 - **Bcrypt.js**: Biblioteca para hashing de senhas.
 - **dotenv**: Módulo para carregar variáveis de ambiente.
-- **Trello**: Ferramenta Kanban para organização das tarefas antes de começar a desenvolver. `https://trello.com/b/5FN70UKV/viagem365`
+- **Trello**: Ferramenta Kanban para organização das tarefas antes de começar a desenvolver. 
 
 ### Como Executar
 
@@ -57,13 +60,9 @@ Este projeto utiliza as seguintes tecnologias:
 
 `npx sequelize-cli db:migrate:undo`
 
-## Documentação do Sequelize:
-
-`https://sequelize.org/docs/v6/core-concepts/model-basics/`
-
 ## Criando o primeiro Seed
 
-`npx sequelize-cli seed:generate --name demo-user`
+`npx sequelize-cli seed:generate --name usuarios`
 
 ### Rodando Seeds
 
@@ -81,7 +80,7 @@ Este projeto utiliza as seguintes tecnologias:
 
 `npm install swagger-ui-express`
 
-### Instalar o Swagger AutoGen para gerar o documento Swagger de forma automatica
+### Instalar o Swagger AutoGen para gerar o documento Swagger de forma automática
 
 `npm install swagger-autogen`
 

@@ -53,10 +53,5 @@ Usuario.hasMany(Destino, {
     onDelete: 'RESTRICT' // Impede a deleção de um usuário que tenha destinos associados
 })
 
-// Destino.associate = models => {
-//     Destino.belongsTo(models.Usuario, { foreignKey: 'usuario_id' });
-//   };
-
-//   return Destino
 
 module.exports = Destino
