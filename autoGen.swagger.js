@@ -3,7 +3,7 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: "Viagem365",
-    description: "API para gerenciamento de usuários e destinos - Uma plataforma que visa promover viagens sustentáveis e experiências positivas para os usuários, fornecendo acesso a informações sobre destinos turísticos, praias, atrações naturais e atividades recreativas.",
+    description: "API para gerenciamento de usuários e destinos - Uma plataforma que visa promover viagens sustentáveis e experiências positivas para os usuários, fornecendo acesso a informações sobre destinos turísticos, praias, atrações naturais e atividades recreativas",
     version: "1.0.0"
   },
   host: 'localhost:3000',
@@ -26,4 +26,4 @@ swaggerAutogen(outputFile, routes, doc).then(() => {
     console.log('Documentação Swagger gerada com sucesso!');
   }).catch(error => {
     console.error('Falha ao gerar documentação Swagger:', error);
-  });;
+  });

@@ -1,11 +1,13 @@
 # Viagem365
 
+![Node.js](https://img.shields.io/badge/node-%3E%3D12.18.3-brightgreen)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-%3E%3D12-brightgreen)
+![Express.js](https://img.shields.io/badge/Express.js-v4.17.1-informational)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+
 ## Sobre o Projeto
 
 **Viagem365** é uma plataforma projetada para promover turismo sustentável, permitindo que os usuários explorem, descubram, e compartilhem experiências sobre destinos turísticos, praias, atrações naturais e atividades recreativas. A plataforma serve como um recurso valioso para aqueles que buscam aventuras sustentáveis e experiências autênticas ao redor do mundo.
-
-![Node.js](https://img.shields.io/badge/node-%3E%3D12.18.3-brightgreen)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-%3E%3D12-brightgreen)
 
 ### Problema que Resolve
 
@@ -22,7 +24,30 @@ Este projeto utiliza as seguintes tecnologias:
 - **JWT (JSON Web Tokens)**: Utilizado para a autenticação de usuários.
 - **Bcrypt.js**: Biblioteca para hashing de senhas.
 - **dotenv**: Módulo para carregar variáveis de ambiente.
-- **Trello**: Ferramenta Kanban para organização das tarefas antes de começar a desenvolver. 
+- **Trello**: Ferramenta Kanban para organização das tarefas antes de começar a desenvolver.
+
+## Criar o repositório:
+
+1. `npm install node`
+2. `npm init -y`
+3. `npm install --save sequelize`
+4. `npm install --save-dev sequelize-cli`
+5. `npm install --save express`
+6. `npm install --save pg`
+7. `npm install --save cors`
+8. `npm install --save dotenv`
+9. `npm install --save pg connection-string`
+10. |-- .env_example .env
+11. `cp .env_example .env`
+12. `npx sequelize-cli migration:generate --name criar_tabela_usuarios`
+13. `npx sequelize-cli migration:generate --name criar_tabela_destinos`
+14. `npx sequelize-cli init`
+15. `npm install --save-dev nodemon dotenv`
+16. `npm install bcryptjs`
+17. `npm install jsonwebtoken`
+18. `npm install axios`
+19. `npm install yup`
+20. `npm install express-validator`
 
 ### Como Executar
 
@@ -76,6 +101,8 @@ Este projeto utiliza as seguintes tecnologias:
 
 ## Swagger
 
+A documentação da API é realizada através do Swagger, facilitando o entendimento e teste dos endpoints disponíveis.
+
 ### Instalar o Swagger UI
 
 `npm install swagger-ui-express`
@@ -99,9 +126,12 @@ Este projeto utiliza as seguintes tecnologias:
 **Passo 5: Executar o Swagger Autogen**
 `node swagger`
 
-Isso irá gerar a documentação baseada nas anotações feitas em suas rotas e torná-la acessível em `localhost:3000/docs`
-
+**Passo 6: Executar o Servidor**
 Após executar o swagger executar o servidor: `npm run start:dev`
+
+#### Acessando a Documentação Swagger
+
+Para acessar a documentação da API, após iniciar o servidor, visite: `localhost:3000/docs`
 
 ## Novas Bibliotecas utilizadas:
 
@@ -149,46 +179,18 @@ Após executar o swagger executar o servidor: `npm run start:dev`
 
 `npm install express-validator`
 
-## Instalar as dependências necessárias:
-
-1. `npm install node`
-2. `npm init -y`
-3. `npm install --save sequelize`
-4. `npm install --save-dev sequelize-cli`
-5. `npm install --save express`
-6. `npm install --save pg`
-7. `npm install --save cors`
-8. `npm install --savedotenv`
-9. `npm install --save pg connection-string`
-10. |-- .env_example .env
-11. `cp .env_example .env`
-12. `npx sequelize-cli init`
-13. `npx sequelize-cli migration:generate --name criar_tabela_destinos`
-14. `npx sequelize-cli migration:generate --name criar_tabela_usuarios`
-15. `npm install --save-dev nodemon dotenv`
-
-## Branch de Produção
-
-main
-
-## Branch de Desenvolvimento
-
-develop
-
 ## GitFlow
 
-- git add .
-- git pull origin feature/src
-- git pull origin develop
-- git checkout develop
-- git merge feature/src
-- git push origin develop
-- git push origin feature/src
-- git push origin develop
+Abordagem GitFlow para o desenvolvimento, com branches principais e secundárias organizadas da seguinte maneira:
 
-- git checkout develop
-- git merge feature/src
-- git push origin develop
+- Main (produção)
+- Develop (desenvolvimento)
+
+**Comandos típicos**
+
+- `git checkout develop`
+- `git merge feature/branch_name`
+- `git push origin develop`
 
 **Branchs Utilizadas**
 
@@ -198,3 +200,44 @@ develop
 - rotas
 - rota_destino
 - auth
+
+# Propostas de Melhorias para Viagem365
+
+Viagem365 se dedica a promover o turismo sustentável. Para continuar aprimorando nossa plataforma e enriquecer a experiência do usuário, propomos as seguintes melhorias:
+
+## Interface do Usuário
+
+- **Design Responsivo**: Otimizar a plataforma para dispositivos móveis.
+- **Interface Multilíngue**: Adicionar suporte para vários idiomas para atrair um público global.
+
+## Funcionalidades de Comunidade
+
+- **Fóruns de Discussão**: Criar espaços para usuários discutirem e compartilharem experiências.
+- **Sistema de Recompensas**: Implementar recompensas para usuários que contribuem ativamente na plataforma.
+
+## Ferramentas de Personalização
+
+- **Recomendações Personalizadas**: Desenvolver algoritmos para sugerir destinos e atividades baseados nas preferências dos usuários.
+- **Itinerários Personalizáveis**: Permitir que os usuários criem e compartilhem seus próprios itinerários de viagem.
+
+## Integrações e Parcerias
+
+- **Reservas e Check-ins**: Integrar funcionalidades de reserva de hotéis, voos e atrações diretamente na plataforma.
+- **Parcerias com Organizações Locais**: Estabelecer colaborações para promover experiências autênticas e sustentáveis.
+
+## Segurança e Privacidade
+
+- **Autenticação de Dois Fatores (2FA)**: Adicionar uma camada extra de segurança para as contas dos usuários.
+- **Controles de Privacidade**: Aumentar o controle dos usuários sobre suas informações pessoais compartilhadas.
+
+## Análises e Relatórios
+
+- **Dashboards de Analytics**: Desenvolver painéis para visualizar estatísticas de uso e impactos ambientais.
+- **Relatórios de Sustentabilidade**: Oferecer insights sobre como as viagens estão alinhadas com práticas sustentáveis.
+
+## Marketing e Engajamento
+
+- **Campanhas de Conscientização**: Promover educação sobre turismo sustentável dentro da plataforma.
+- **Engajamento Social**: Facilitar o compartilhamento de conteúdo nas redes sociais para aumentar a visibilidade.
+
+Estas melhorias visam não só enriquecer a funcionalidade e a usabilidade de Viagem365, mas também fortalecer nosso compromisso com o turismo responsável e sustentável.
